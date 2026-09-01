@@ -449,7 +449,7 @@
 
 <div id="submit" class="submit-section wrap">
   <h2>Add your drawing to the wall</h2>
-  <p class="helper">Takes about a minute. Your drawing is shown publicly with your name and location.</p>
+  <p class="helper">Takes about a minute. Drawings are reviewed before they appear on the public wall, and shown with your name and location.</p>
 
   <form id="submit-form">
     <div class="field">
@@ -483,6 +483,10 @@
     <div class="field full consent">
       <input type="checkbox" id="f-consent" required>
       <label for="f-consent" style="font-size:inherit;color:inherit;">This is my own artwork, and I'm happy for it to be shown publicly on this page.</label>
+    </div>
+    <div style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+      <label for="f-website">Leave this field blank</label>
+      <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off">
     </div>
     <div class="field full submit-row">
       <button type="submit" class="btn btn-primary" id="submit-btn">Add to the wall</button>
@@ -622,6 +626,13 @@
   // ---------- submit ----------
   form.addEventListener('submit', async function(e){
     e.preventDefault();
+
+    // Honeypot: real visitors never see or fill this field. If it has a
+    // value, silently drop the submission without showing an error, so
+    // simple bots don't learn to work around it.
+    const honeypot = document.getElementById('f-website').value.trim();
+    if (honeypot) { return; }
+
     if (!pendingBlob) { setStatus('Please add an image first.', true); return; }
 
     const name = document.getElementById('f-name').value.trim();
@@ -648,20 +659,16 @@
       const image_url = urlData.publicUrl;
 
       setStatus('Saving your entry…');
-      const { data: inserted, error: insertError } = await supabase
+      const { error: insertError } = await supabase
         .from(TABLE)
-        .insert([{ name, location, title, contact, story, image_url }])
-        .select()
-        .single();
+        .insert([{ name, location, title, contact, story, image_url }]);
       if (insertError) throw insertError;
 
-      setStatus('Added — thank you! Your drawing is now on the wall.');
+      setStatus('Thank you! Your drawing is in for review and will appear on the wall once approved.');
       form.reset();
       filePreview.style.display = 'none';
       fileDropLabel.textContent = 'Click to choose an image, or drag one here — JPG or PNG, up to 15MB';
       pendingBlob = null;
-
-      prependSubmission(inserted);
     } catch (err) {
       console.error(err);
       setStatus('Something went wrong saving your drawing — please try again.', true);
@@ -710,15 +717,6 @@
     } catch (err) {
       console.error(err);
     }
-  }
-
-  function prependSubmission(submission){
-    totalCount += 1;
-    cursor += 1;
-    renderCount();
-    galleryEmpty.style.display = 'none';
-    const tile = buildTile(submission);
-    masonry.prepend(tile);
   }
 
   function appendTile(submission){
