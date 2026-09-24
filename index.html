@@ -3,24 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ভবিষ্যতের বাঙালিয়ানা — Bhabishyater Bangaliana</title>
+<title>ভূত আর ভবিষ্যৎ — Bhoot Aar Bhabishyot</title>
+<link rel="icon" type="image/png" href="logo.png">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap');
 
   :root{
-    --indigo: #14101F;
-    --indigo-2: #1D1730;
-    --indigo-3: #262041;
-    --red: #C1272D;
-    --red-glow: rgba(193,39,45,0.35);
-    --gold: #C9A227;
-    --gold-soft: #E4C766;
-    --teal: #33E6C9;
-    --teal-glow: rgba(51,230,201,0.35);
-    --ivory: #F3ECDD;
-    --ivory-dim: #B9B2A6;
-    --line: rgba(201,162,39,0.28);
+    --indigo: #150608;
+    --indigo-2: #260A0F;
+    --indigo-3: #391019;
+    --red: #B8232E;
+    --red-glow: rgba(184,35,46,0.4);
+    --gold: #B8232E;
+    --gold-soft: #D6626C;
+    --teal: #5A75AC;
+    --teal-glow: rgba(90,117,172,0.35);
+    --ivory: #F3ECE0;
+    --ivory-dim: #C9AFA5;
+    --line: rgba(243,236,224,0.16);
     --serif: 'Tiro Bangla', 'Noto Sans Bengali', serif;
     --sans: 'Space Grotesk', 'Noto Sans Bengali', sans-serif;
   }
@@ -39,8 +40,8 @@
     content:'';
     position: fixed; inset:0;
     background:
-      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(193,39,45,0.16), transparent 60%),
-      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(51,230,201,0.10), transparent 60%);
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(184,35,46,0.18), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(90,117,172,0.12), transparent 60%);
     pointer-events:none;
     z-index:0;
   }
@@ -73,8 +74,9 @@
     letter-spacing: 0.01em;
     color: var(--ivory);
     text-decoration:none;
-    display:flex; align-items:baseline; gap:8px;
+    display:flex; align-items:center; gap:10px;
   }
+  .brand img{ width:34px; height:34px; border-radius:50%; display:block; }
   .brand span{ color: var(--gold-soft); font-size: 0.85rem; font-family: var(--sans); }
   .site-nav nav{ display:flex; gap: 28px; }
   .site-nav nav a{
@@ -87,15 +89,44 @@
 
   /* ---------- HERO ---------- */
   .hero{
-    padding: 76px 0 60px;
+    position: relative;
+    min-height: 640px;
+    max-height: 94vh;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
     text-align:center;
+    padding:0;
+    margin:0;
   }
-  .hero .emblem{ width: 220px; height:220px; margin: 0 auto 18px; }
+  .hero-img{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit: cover;
+    object-position: center 42%;
+  }
+  .hero-scrim{
+    position:absolute; inset:0;
+    background: linear-gradient(180deg, rgba(21,6,8,0.35) 0%, rgba(21,6,8,0.6) 55%, var(--indigo) 97%);
+  }
+  .hero-content{
+    position: relative; z-index:2;
+    width:100%;
+    padding: 40px 24px 60px;
+  }
+  .hero-logo{
+    width:220px; height:220px;
+    border-radius:50%;
+    margin: 0 auto 22px;
+    display:block;
+    box-shadow: 0 0 0 1px rgba(243,236,224,0.18), 0 18px 50px rgba(21,6,8,0.65);
+  }
   .kicker{
     font-family: var(--serif); font-style: italic;
     color: var(--gold-soft);
     font-size: 1.05rem;
     margin: 0 0 10px;
+    text-shadow: 0 2px 14px rgba(21,6,8,0.7);
   }
   .hero h1{
     font-family: var(--serif);
@@ -104,6 +135,7 @@
     line-height: 1.2;
     margin: 0 0 6px;
     color: var(--ivory);
+    text-shadow: 0 2px 18px rgba(21,6,8,0.8);
   }
   .hero h1 em{
     font-style: normal;
@@ -115,12 +147,14 @@
     font-size: 0.98rem;
     letter-spacing: 0.03em;
     margin: 0 0 26px;
+    text-shadow: 0 2px 14px rgba(21,6,8,0.7);
   }
   .hero p.lede{
     max-width: 620px;
     margin: 0 auto 34px;
     color: var(--ivory-dim);
     font-size: 1.05rem;
+    text-shadow: 0 2px 14px rgba(21,6,8,0.7);
   }
   .hero-ctas{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
   .btn{
@@ -340,7 +374,7 @@
     padding: 34px 0; text-align:center;
     color: var(--ivory-dim); font-size: 0.85rem;
   }
-  footer .mini-emblem{ width:40px; height:40px; margin: 0 auto 14px; opacity:0.7; }
+  footer .mini-emblem{ width:40px; height:40px; margin: 0 auto 14px; border-radius:50%; display:block; }
 
   @media (max-width: 720px){
     .about-grid{ grid-template-columns: 1fr; }
@@ -358,7 +392,7 @@
 
 <div class="site-nav">
   <div class="wrap">
-    <a class="brand" href="#top">ভবিষ্যতের বাঙালিয়ানা <span>Bhabishyater Bangaliana</span></a>
+    <a class="brand" href="#top"><img src="logo.png" alt="Bhoot Aar Bhabishyot logo"> ভূত আর ভবিষ্যৎ <span>Bhoot Aar Bhabishyot</span></a>
     <nav>
       <a href="#about">The Theme</a>
       <a href="#submit">Submit</a>
@@ -367,53 +401,19 @@
   </div>
 </div>
 
-<div id="top" class="hero wrap">
-  <svg class="emblem" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <defs>
-      <path id="petal" d="M200,200 C176,158 176,96 200,44 C224,96 224,158 200,200 Z" fill="none" stroke="var(--gold-soft)" stroke-width="2"/>
-      <path id="circuit" d="M200,200 L200,158 L238,158 L238,104 L272,104" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <circle id="node" cx="272" cy="104" r="4" fill="var(--teal)"/>
-    </defs>
-    <circle cx="200" cy="200" r="150" fill="none" stroke="var(--line)" stroke-width="1"/>
-    <g>
-      <use href="#petal" transform="rotate(0 200 200)" class="draw p1" pathLength="1"/>
-      <use href="#petal" transform="rotate(90 200 200)" class="draw p1" pathLength="1"/>
-      <use href="#petal" transform="rotate(180 200 200)" class="draw p1" pathLength="1"/>
-      <use href="#petal" transform="rotate(270 200 200)" class="draw p1" pathLength="1"/>
-      <use href="#petal" transform="rotate(45 200 200)" class="draw p2" pathLength="1"/>
-      <use href="#petal" transform="rotate(135 200 200)" class="draw p2" pathLength="1"/>
-      <use href="#petal" transform="rotate(225 200 200)" class="draw p2" pathLength="1"/>
-      <use href="#petal" transform="rotate(315 200 200)" class="draw p2" pathLength="1"/>
-
-      <use href="#circuit" transform="rotate(22.5 200 200)" class="draw c1" pathLength="1"/>
-      <use href="#circuit" transform="rotate(112.5 200 200)" class="draw c1" pathLength="1"/>
-      <use href="#circuit" transform="rotate(202.5 200 200)" class="draw c1" pathLength="1"/>
-      <use href="#circuit" transform="rotate(292.5 200 200)" class="draw c1" pathLength="1"/>
-      <use href="#circuit" transform="rotate(67.5 200 200)" class="draw c2" pathLength="1"/>
-      <use href="#circuit" transform="rotate(157.5 200 200)" class="draw c2" pathLength="1"/>
-      <use href="#circuit" transform="rotate(247.5 200 200)" class="draw c2" pathLength="1"/>
-      <use href="#circuit" transform="rotate(337.5 200 200)" class="draw c2" pathLength="1"/>
-
-      <use href="#node" transform="rotate(22.5 200 200)" class="fadein n"/>
-      <use href="#node" transform="rotate(112.5 200 200)" class="fadein n"/>
-      <use href="#node" transform="rotate(202.5 200 200)" class="fadein n"/>
-      <use href="#node" transform="rotate(292.5 200 200)" class="fadein n"/>
-      <use href="#node" transform="rotate(67.5 200 200)" class="fadein n"/>
-      <use href="#node" transform="rotate(157.5 200 200)" class="fadein n"/>
-      <use href="#node" transform="rotate(247.5 200 200)" class="fadein n"/>
-      <use href="#node" transform="rotate(337.5 200 200)" class="fadein n"/>
-    </g>
-    <circle cx="200" cy="200" r="10" id="emblem-dot" class="fadein core"/>
-    <circle cx="200" cy="200" r="18" id="emblem-ring" stroke-width="1" opacity="0.5" class="fadein core"/>
-  </svg>
-
-  <p class="kicker">Durga Puja, reimagined</p>
-  <h1>আগামীর বাঙালি <em>আঁকো</em></h1>
-  <p class="sub-en">Draw the Bengali of tomorrow</p>
-  <p class="lede">Before the dhak beats this year, we're building a wall of drawings — Durga descending from a starship, alpona traced in light, your ঠাকুমার Kantha stitched with circuits. Same soul, new skin. Anyone, anywhere, can add one.</p>
-  <div class="hero-ctas">
-    <a href="#submit" class="btn btn-primary">Add your drawing</a>
-    <a href="#gallery" class="btn btn-ghost">See the wall</a>
+<div id="top" class="hero">
+  <img class="hero-img" src="hero-ship.jpg" alt="A futuristic spaceship inspired by a traditional Bengali bajra houseboat, flying low over a neon-lit futuristic Bengali city at night">
+  <div class="hero-scrim"></div>
+  <div class="hero-content wrap">
+    <img class="hero-logo" src="logo.png" alt="Bhoot Aar Bhabishyot logo">
+    <p class="kicker">Durga Puja, reimagined</p>
+    <h1>আগামীর বাঙালি <em>আঁকো</em></h1>
+    <p class="sub-en">Draw the Bengali of tomorrow</p>
+    <p class="lede">Before the dhak beats this year, we're building a wall of drawings — Durga descending from a starship, alpona traced in light, your ঠাকুমার Kantha stitched with circuits. Same soul, new skin. Anyone, anywhere, can add one.</p>
+    <div class="hero-ctas">
+      <a href="#submit" class="btn btn-primary">Add your drawing</a>
+      <a href="#gallery" class="btn btn-ghost">See the wall</a>
+    </div>
   </div>
 </div>
 
@@ -489,7 +489,7 @@
       <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off">
     </div>
     <div class="field full submit-row">
-      <button type="submit" class="btn btn-primary" id="submit-btn">Add to the wall</button>
+      <button type="submit" class="btn btn-primary" id="submit-btn">Review before adding</button>
       <span id="submit-status"></span>
     </div>
   </form>
@@ -507,16 +507,30 @@
   </div>
 </div>
 
+<div class="lightbox" id="confirm-modal">
+  <button class="lightbox-close" id="confirm-close" aria-label="Close">&times;</button>
+  <div class="lightbox-inner">
+    <img id="confirm-img" alt="">
+    <div class="lightbox-info">
+      <h3 id="confirm-title"></h3>
+      <p class="who" id="confirm-who"></p>
+      <p id="confirm-story"></p>
+      <div style="display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;">
+        <button type="button" class="btn btn-ghost" id="confirm-edit">Go back and edit</button>
+        <button type="button" class="btn btn-primary" id="confirm-submit">Looks right — add to the wall</button>
+      </div>
+      <p id="confirm-status" style="margin-top:12px; font-size:0.85rem; color: var(--teal);"></p>
+    </div>
+  </div>
+</div>
+
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
   <div class="lightbox-inner" id="lightbox-inner"></div>
 </div>
 
 <footer>
-  <svg class="mini-emblem" viewBox="0 0 40 40" aria-hidden="true">
-    <circle cx="20" cy="20" r="4" fill="var(--red)"/>
-    <circle cx="20" cy="20" r="17" fill="none" stroke="var(--gold)" stroke-width="1"/>
-  </svg>
+  <img class="mini-emblem" src="logo.png" alt="Bhoot Aar Bhabishyot logo">
   <p>A community wall for Durga Puja — every drawing here is public and visible to anyone who visits this page.</p>
 </footer>
 
@@ -551,6 +565,16 @@
   const lightbox = document.getElementById('lightbox');
   const lightboxInner = document.getElementById('lightbox-inner');
   const lightboxClose = document.getElementById('lightbox-close');
+
+  const confirmModal = document.getElementById('confirm-modal');
+  const confirmImg = document.getElementById('confirm-img');
+  const confirmTitle = document.getElementById('confirm-title');
+  const confirmWho = document.getElementById('confirm-who');
+  const confirmStory = document.getElementById('confirm-story');
+  const confirmStatus = document.getElementById('confirm-status');
+  const confirmClose = document.getElementById('confirm-close');
+  const confirmEdit = document.getElementById('confirm-edit');
+  const confirmSubmitBtn = document.getElementById('confirm-submit');
 
   let cursor = 0;
   let totalCount = 0;
@@ -624,7 +648,9 @@
   }
 
   // ---------- submit ----------
-  form.addEventListener('submit', async function(e){
+  let pendingFields = null;
+
+  form.addEventListener('submit', function(e){
     e.preventDefault();
 
     // Honeypot: real visitors never see or fill this field. If it has a
@@ -643,8 +669,37 @@
 
     if (!name || !location || !title) { setStatus('Please fill in your name, location and a title.', true); return; }
 
-    submitBtn.disabled = true;
-    setStatus('Uploading your drawing…');
+    pendingFields = { name, location, title, contact, story };
+    setStatus('');
+    openConfirmModal();
+  });
+
+  function openConfirmModal(){
+    confirmImg.src = URL.createObjectURL(pendingBlob);
+    confirmTitle.textContent = pendingFields.title;
+    confirmWho.textContent = pendingFields.name + ' · ' + pendingFields.location + (pendingFields.contact ? ' · ' + pendingFields.contact : '');
+    confirmStory.textContent = pendingFields.story || '';
+    confirmStory.style.display = pendingFields.story ? 'block' : 'none';
+    confirmStatus.textContent = '';
+    confirmStatus.className = '';
+    confirmSubmitBtn.disabled = false;
+    confirmSubmitBtn.textContent = 'Looks right — add to the wall';
+    confirmModal.classList.add('open');
+  }
+
+  function closeConfirmModal(){
+    confirmModal.classList.remove('open');
+  }
+  confirmClose.addEventListener('click', closeConfirmModal);
+  confirmEdit.addEventListener('click', closeConfirmModal);
+  confirmModal.addEventListener('click', e => { if (e.target === confirmModal) closeConfirmModal(); });
+
+  confirmSubmitBtn.addEventListener('click', async function(){
+    if (!pendingBlob || !pendingFields) return;
+    confirmSubmitBtn.disabled = true;
+    confirmSubmitBtn.textContent = 'Uploading…';
+    confirmStatus.className = '';
+    confirmStatus.textContent = 'Uploading your drawing…';
 
     const fileId = Date.now() + '-' + Math.random().toString(36).slice(2,8);
     const path = fileId + '.jpg';
@@ -658,22 +713,25 @@
       const { data: urlData } = supabase.storage.from(BUCKET).getPublicUrl(path);
       const image_url = urlData.publicUrl;
 
-      setStatus('Saving your entry…');
+      confirmStatus.textContent = 'Saving your entry…';
       const { error: insertError } = await supabase
         .from(TABLE)
-        .insert([{ name, location, title, contact, story, image_url }]);
+        .insert([{ ...pendingFields, image_url }]);
       if (insertError) throw insertError;
 
+      closeConfirmModal();
       setStatus('Thank you! Your drawing is in for review and will appear on the wall once approved.');
       form.reset();
       filePreview.style.display = 'none';
       fileDropLabel.textContent = 'Click to choose an image, or drag one here — JPG or PNG, up to 15MB';
       pendingBlob = null;
+      pendingFields = null;
     } catch (err) {
       console.error(err);
-      setStatus('Something went wrong saving your drawing — please try again.', true);
-    } finally {
-      submitBtn.disabled = false;
+      confirmStatus.className = 'error';
+      confirmStatus.textContent = 'Something went wrong saving your drawing — please try again.';
+      confirmSubmitBtn.disabled = false;
+      confirmSubmitBtn.textContent = 'Looks right — add to the wall';
     }
   });
 
@@ -769,24 +827,6 @@
   loadIndex();
 })();
 </script>
-
-<style>
-  #petal{ stroke: var(--gold-soft); fill: none; }
-  #circuit{ stroke: var(--teal); fill: none; }
-  #node{ fill: var(--teal); }
-  #emblem-dot{ fill: var(--red); }
-  #emblem-ring{ fill: none; stroke: var(--red); }
-  @keyframes drawline{ from{ stroke-dashoffset: 1; } to{ stroke-dashoffset: 0; } }
-  @keyframes fadein{ from{ opacity: 0; } to{ opacity: 1; } }
-  .draw{ stroke-dasharray: 1; stroke-dashoffset: 1; animation: drawline 1.4s ease forwards; }
-  .draw.p1{ animation-delay: .1s; }
-  .draw.p2{ animation-delay: .35s; }
-  .draw.c1{ animation-delay: .6s; }
-  .draw.c2{ animation-delay: .85s; }
-  .fadein{ opacity:0; animation: fadein .6s ease forwards; }
-  .fadein.n{ animation-delay: 1.3s; }
-  .fadein.core{ animation-delay: 1.5s; }
-</style>
 
 </body>
 </html>
